@@ -7,7 +7,7 @@ from datetime import datetime, date, timedelta, time
 from sqlalchemy import create_engine
 import pymysql
 import os
-
+import re
 # Installation de pymysql en tant que MySQLdb
 pymysql.install_as_MySQLdb()
 
