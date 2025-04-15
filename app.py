@@ -179,7 +179,7 @@ def page_acceuil():
 @app.route('/admin/messages')
 def admin_messages():
     # Récupère tous les messages triés par date (du plus récent au plus ancien)
-    messages = ContactMessage.query.order_by(ContactMessage.created_at.desc()).all()
+    message = ContactMessage.query.order_by(ContactMessage.created_at.desc()).all()
     return render_template('admin_messages.html', messages=messages)
 
 
