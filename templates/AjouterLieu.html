@@ -125,7 +125,7 @@
 
             <div class="input-group">
                 <i class="fas fa-compass"></i>
-                <input type="text" id="latitude" name="latitude" placeholder="Latitude" required>
+                <input type="text" id="latitude" name="latitudee" placeholder="Latitude" required>
             </div>
 
             <div class="input-group">
@@ -155,14 +155,14 @@
             // Récupère les valeurs du formulaire
             var placeName = document.getElementById("nom_lieu").value;
             var placeType = document.getElementById("type_lieu").value;
-            var placeLatitude = document.getElementById("latitude").value;
+            var placeLatitude = document.getElementById("latitudee").value;
             var placeLongitude = document.getElementById("longitude").value;
             var placeDescription = document.getElementById("description").value;
 
             // Affiche les valeurs dans la console pour vérification
             console.log("Nom du lieu: " + placeName);
             console.log("Type du lieu: " + placeType);
-            console.log("Latitude: " + placeLatitude);
+            console.log("Latitudee: " + placeLatitudee);
             console.log("Longitude: " + placeLongitude);
             console.log("Description: " + placeDescription);
 
@@ -183,7 +183,7 @@
                 }
             };
 
-            xhr.send("nom_lieu=" + placeName + "&type_lieu=" + placeType + "&latitude=" + placeLatitude + "&longitude=" + placeLongitude + "&description=" + placeDescription);
+            xhr.send("nom_lieu=" + placeName + "&type_lieu=" + placeType + "&latitudee=" + placeLatitudee + "&longitude=" + placeLongitude + "&description=" + placeDescription);
         });
     </script>
 
