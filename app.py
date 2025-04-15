@@ -315,8 +315,8 @@ class Lieu(db.Model):
     id_lieu = db.Column(db.Integer, primary_key=True)
     nom_lieu = db.Column(db.String(100), nullable=False)
     type_lieu = db.Column(db.String(50), nullable=False)
-    latitudee = db.Column(db.float, nullable=False)
-    longitude = db.Column(db.float, nullable=False)
+    latitudee = db.Column(db.Float, nullable=False)
+    longitude = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(255), nullable=False)
 
     def __init__(self, nom_lieu, type_lieu, latitudee, longitude, description):
