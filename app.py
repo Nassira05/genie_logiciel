@@ -315,14 +315,14 @@ class Lieu(db.Model):
     id_lieu = db.Column(db.Integer, primary_key=True)
     nom_lieu = db.Column(db.String(100), nullable=False)
     type_lieu = db.Column(db.String(50), nullable=False)
-    latitude = db.Column(db.Float, nullable=False)
-    longitude = db.Column(db.Float, nullable=False)
+    latitudee = db.Column(db.real, nullable=False)
+    longitude = db.Column(db.real, nullable=False)
     description = db.Column(db.String(255), nullable=False)
 
-    def __init__(self, nom_lieu, type_lieu, latitude, longitude, description):
+    def __init__(self, nom_lieu, type_lieu, latitudee, longitude, description):
         self.nom_lieu = nom_lieu
         self.type_lieu = type_lieu
-        self.latitude = latitude
+        self.latitudee = latitudee
         self.longitude = longitude
         self.description = description
 
@@ -343,12 +343,12 @@ def ajouter_lieu():
             # Récupérer les données du formulaire
             nom_lieu = request.form['nom_lieu']
             type_lieu = request.form['type_lieu']
-            latitude = float(request.form['latitude'])  # Assurez-vous que c'est un nombre
+            latitudee = float(request.form['latitudee'])  # Assurez-vous que c'est un nombre
             longitude = float(request.form['longitude'])  # Assurez-vous que c'est un nombre
             description = request.form['description']
 
             # Ajouter le nouveau lieu à la base de données
-            nouveau_lieu = Lieu(nom_lieu=nom_lieu, type_lieu=type_lieu, latitude=latitude, longitude=longitude, description=description)
+            nouveau_lieu = Lieu(nom_lieu=nom_lieu, type_lieu=type_lieu, latitudee=latitudee, longitude=longitude, description=description)
             db.session.add(nouveau_lieu)
             db.session.commit()  # Enregistrez les changements
 
@@ -375,7 +375,7 @@ def modifier_lieu(index):
             # Mettre à jour les données du lieu avec les valeurs du formulaire
             lieu.nom_lieu = request.form['nom_lieu']
             lieu.type_lieu = request.form['type_lieu']
-            lieu.latitude = float(request.form['latitude'])  # Assurez-vous que latitude est un float
+            lieu.latitudee = float(request.form['latitudee'])  # Assurez-vous que latitude est un float
             lieu.longitude = float(request.form['longitude'])  # Assurez-vous que longitude est un float
             lieu.description = request.form['description']
 
