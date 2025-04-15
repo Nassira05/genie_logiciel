@@ -511,10 +511,10 @@
                     <tbody>
                         {% for message in messages %}
                         <tr>
-                            <td class="message-sender">{{contact_messages.name }}</td>
-                            <td><a href="mailto:{{ contact_messages.email }}" class="message-email">{{ message.email }}</a></td>
-                            <td class="message-date">{{ contact_messages.created_at.strftime('%d/%m/%Y %H:%M') }}</td>
-                            <td class="message-content">{{ contact_messages.message }}</td>
+                            <td class="message-sender">{{messages.name }}</td>
+                            <td><a href="mailto:{{ messages.email }}" class="message-email">{{ messages.email }}</a></td>
+                            <td class="message-date">{{ messages.created_at.strftime('%d/%m/%Y %H:%M') }}</td>
+                            <td class="message-content">{{ messages.message }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
