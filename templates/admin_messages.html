@@ -513,7 +513,7 @@
                         <tr>
                             <td class="message-sender">{{message.name }}</td>
                             <td><a href="mailto:{{ message.email }}" class="message-email">{{ message.email }}</a></td>
-                            <td class="message-date">{{ message.created_at.strftime('%d/%m/%Y %H:%M') }}</td>
+                            <td class="message-date">{{ message.created_at | datetimeformat('%d/%m/%Y %H:%M') }}</td>
                             <td class="message-content">{{ message.message }}</td>
                         </tr>
                         {% endfor %}
