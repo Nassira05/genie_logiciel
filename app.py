@@ -6,6 +6,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime, date, timedelta, time
 from sqlalchemy import create_engine
 import pymysql
+import os
 
 # Installation de pymysql en tant que MySQLdb
 pymysql.install_as_MySQLdb()
