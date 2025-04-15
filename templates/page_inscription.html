@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les étapes de l'inscription</title>
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for ('static',filename='CSS/page_inscription.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    .notification-badge {
+      display: inline-block;
+      background-color: #e74c3c;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+      line-height: 20px;
+      font-size: 12px;
+      margin-left: 5px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+    .download-button-container {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .download-button {
+        display: inline-flex;
+        align-items: center;
+        background-color: #2c3e50;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .download-button:hover {
+        background-color: #34495e;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .download-button i {
+        margin-right: 8px;
+        font-size: 1.2em;
+    }
+
+    /* Mobile Menu Styles */
+    .menu-toggle {
+        display: none;
+        cursor: pointer;
+        color: white;
+        font-size: 1.8rem;
+        padding: 10px;
+        z-index: 1000;
+    }
+
+    @media (max-width: 768px) {
+        .menu-toggle {
+            display: block;
+        }
+        
+        .menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: #2c3e50;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-top: 80px;
+            transition: right 0.3s ease;
+            z-index: 999;
+        }
+        
+        .menu.active {
+            right: 0;
+        }
+        
+        .menu li {
+            width: 100%;
+            padding: 10px 20px;
+        }
+        
+        .dropdown-menu {
+            position: static;
+            display: none;
+            width: 100%;
+            box-shadow: none;
+            background-color: rgba(0,0,0,0.1);
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            display: none;
+        }
+        
+        .dropdown.active .dropdown-menu {
+            display: block;
+        }
+
+        /* Hero section adjustments */
+        .hero h1 {
+            font-size: 2rem;
+        }
+        
+        .hero p {
+            font-size: 1rem;
+        }
+
+        /* Content adjustments */
+        .etapes-container {
+            grid-template-columns: 1fr;
+        }
+        
+        .tutorial-section {
+            flex-direction: column;
+        }
+        
+        .tutorial-video, 
+        .tutorial-steps, 
+        .tutorial-documents {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        /* Styles pour le footer */
+    .footer {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer-links {
+      margin-top: 10px;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    }
+
+    /* Tablet adjustments */
+    @media (max-width: 992px) {
+        .etapes-container {
+            grid-template-columns: 1fr 1fr;
+           
+        }
+        
+        .tutorial-section {
+            flex-wrap: wrap;
+        }
+        
+        .tutorial-video {
+            width: 100%;
+        }
+        
+        .tutorial-steps,
+        .tutorial-documents {
+            width: 100%;
+        }
+    }
+
+    /* Small mobile adjustments */
+    @media (max-width: 480px) {
+        .hero h1 {
+            font-size: 1.8rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+        }
+        
+        .tutorial-steps,
+        .tutorial-documents {
+            width: 100%;
+        }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <nav>
+      <div class="logo">
+          <a href="#">StartUni</a>
+      </div>
+      <div class="menu-toggle">☰</div>
+      <ul class="menu">
+          <li><a href="{{ url_for('page_acceuil') }}">Accueil</a></li>
+          <li><a href="{{ url_for('carte') }}">Orientation</a></li>
+          <li class="dropdown">
+              <a href="#">Support Administratif</a>
+              <ul class="dropdown-menu">
+                  <li><a href="{{ url_for ('renseignement') }}">Renseignement sur les filières</a></li>
+                  <li><a href="{{ url_for ('page_inscription') }}">Étapes de l'inscription</a></li>
+                  <li><a href="{{ url_for ('aide') }}">Accès aux aides</a></li>
+                  <li><a href="{{ url_for('gestion') }}">Gestion Documents administratifs</a></li>
+              </ul>
+          </li>
+          <li>
+            <a href="{{ url_for('pla') }}">Planning 
+                {% if events_count > 0 %}
+                <span class="notification-badge">{{ events_count }}</span>
+                {% endif %}
+            </a>
+        </li>
+          <li><a href="{{ url_for ('guide_academique') }}">Guide Académique</a></li>
+          <li><a href="{{ url_for('faq') }}">FAQ</a></li>
+      </ul>
+  </nav>
+  <div class="hero">
+      <h1>Les étapes de l'inscription</h1>
+      <p>Suivez ces étapes simples pour vous inscrire à l'université.</p>
+  </div>
+</header>
+
+<section class="contenu-section">
+    <h3 class="section-title">Informations importantes pour votre inscription à l'Université de Djibouti</h3>
+    <p class="section-description">
+        Chers bacheliers,
+
+        L'Université de Djibouti vous informe qu'il est essentiel de prendre note des Étapes et des Dates à retenir pour procéder à votre inscription à l'Université.
+    </p>
+
+    <div class="etapes-container">
+        <div class="etape">
+            <h3>Étape 1: Préinscriptions en ligne</h3>
+            <p>La date limite pour les préinscriptions en ligne sur la plateforme eCampus (ecampus.univ.edu.dj) est fixée au 8 septembre 2025. Passé ce délai, les préinscriptions ne seront plus possibles, limitant vos chances d'orientation.</p>
+        </div>
+        <div class="etape">
+            <h3>Étape 2: Inscription administrative</h3>
+            <p>Vous devez vous rendre au campus de Balballa entre <strong>le 5 et le 20 septembre 2025 </strong> pour compléter votre dossier avec l'aide du personnel de la Direction de la Scolarité et de la Vie Estudiantine.</p>
+        </div>
+        <div class="etape">
+            <h3>Étape 3: Concours d'entrée</h3>
+            <p>Les concours pour les filières <strong>Médecine, Ingénierie et BBA auront lieu les 10, 11 et 12 septembre 2025. </strong> Les épreuves porteront sur les disciplines suivantes :</p>
+            <ul>
+                <li><strong>Médecine :</strong> Français, Chimie, SVT.</li>
+                <li><strong>Ingénieur :</strong> Anglais, Maths, Physique.</li>
+                <li><strong>BBA :</strong> Anglais, Maths & Logique, Français.</li>
+            </ul>
+        </div>
+        
+        <div class="etape">
+            <h3>Étape 4: Résultats de la 1ère Commission</h3>
+            <p>Les résultats de la 1ère Commission d'Orientation Pédagogique seront disponibles sur eCampus (ecampus.univ.edu.dj) à partir du <strong> 17 septembre 2025.</strong></p>
+        </div>
+        <div class="etape">
+            <h3>Étape 5: Modification des vœux</h3>
+            <p>Vous pourrez modifier vos choix sur eCampus entre le <strong>18 et le 20 septembre 2025 à midi</strong>. Notez que cela annulera automatiquement votre affectation initiale.</p>
+        </div>
+        <div class="etape">
+            <h3>Étape 6: Résultats finaux</h3>
+            <p>Les résultats de la 2ème Commission d'Orientation Pédagogique seront publiés sur eCampus à partir du <strong> 21 septembre 2025.</strong></p>
+        </div>
+    </div>
+</section>
+
+<div class="content-section">
+    <div class="tutorial-section">
+      <!-- Section vidéo -->
+      <div class="tutorial-video">
+        <h2>Tutoriel sur la procédure de la pré-inscription</h2>
+        <iframe src="https://www.youtube.com/embed/4OOD_1ZfmSc" allowfullscreen></iframe>
+        <!-- Ajoutez ce bouton de téléchargement -->
+        <div class="download-button-container">
+          <a href="{{ url_for('static', filename='etape_inscrip.docx') }}" download="etapes_inscription.pdf" class="download-button">
+              <i class='bx bxs-download'></i> Télécharger le guide complet
+          </a>
+      </div>
+    </div>
+  
+      <!-- Section étapes -->
+      <div class="tutorial-steps">
+        <h2>Étapes de la procédure</h2>
+        <ol>
+          <li>Aller sur la plateforme <strong>eCampus.com</strong>.</li>
+          <li>Saisir votre nom d'utilisateur (numéro de bac) et votre mot de passe (matricule lycéen figurant sur votre relevé du bac).</li>
+          <li>Cliquez sur la rubrique <strong>Libre Service</strong>, puis sur <strong>Saisie des vœux</strong>, et ajoutez une nouvelle valeur.</li>
+          <li>Classez vos choix par ordre de préférence (de 1 à 20, le premier choix étant le numéro 1).</li>
+          <li>Pour participer aux concours (médecine, BBA, ingénierie), cochez les cases appropriées.</li>
+          <li>Cliquez sur <strong>Enregistrer</strong> pour valider vos choix.</li>
+          <li>Vous pouvez modifier vos choix jusqu'à la fin de la période de préinscription.</li>
+          <li>N'oubliez pas votre carte d'identité et le code envoyé pour passer le concours.</li>
+        </ol>
+      </div>
+  
+      <!-- Section pièces à fournir -->
+      <div class="tutorial-documents">
+        <h2>Pièces à fournir pour l'inscription administrative</h2>
+        <p>Pour finaliser votre inscription administrative, vous devez vous présenter au Campus de l'Université de Djibouti à Balballa, entre <strong>le 5 et le 20 septembre 2025</strong>, avec les documents suivants :</p>
+        <ul>
+          <li>Une photocopie de votre pièce d'identité ou de votre extrait d'acte de naissance</li>
+          <li>Une photocopie de votre diplôme de baccalauréat</li>
+          <li>Une photocopie de votre relevé de notes du baccalauréat</li>
+          <li>4 photos d'identité récentes</li>
+          <li>Le reçu de paiement des droits d'inscription (25 000 FDJ)</li>
+        </ul>
+        <p>Le dossier de demande d'inscription est à retirer et à remplir sur place.</p>
+      </div>
+    </div>
+</div>
+  
+<div class="chatbot-container">
+    <a href="{{ url_for('chatbox') }}">
+        <button class="chatbot-button" onclick="openChatbot()">💬</button>
+    </a>
+</div> 
+<footer class="footer">
+    <div class="footer-content">
+      <p>© 2025 Assistance Virtuelle - Tous droits réservés</p>
+      <div class="footer-links">
+        <a href="#">Contactez-nous</a> 
+        <span>|</span> 
+        <a href="#">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('.menu');
+        const dropdowns = document.querySelectorAll('.dropdown');
+        
+        menuToggle.addEventListener('click', function() {
+            menu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!menu.contains(e.target) && e.target !== menuToggle) {
+                menu.classList.remove('active');
+            }
+        });
+        
+        // Dropdown functionality for mobile
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('a');
+            
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+    });
+
+    function openChatbot() {
+        // Functionality for chatbot
+    }
+</script>
+
+</body>
+</html>
