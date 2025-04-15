@@ -52,7 +52,7 @@ body {
 header {
     position: relative;
     height: 80vh; /* Hauteur du header */
-    background: url('../images/campus.jpg') no-repeat center center/cover;
+    background: url('../Images/campus.jpg') no-repeat center center/cover;
     
     background-attachment: fixed; /* Rend l'image de fond fixe lors du défilement */
     background-position: center;
